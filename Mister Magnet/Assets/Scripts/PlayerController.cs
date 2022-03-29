@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         //move the player based on the physics update
         float horizontalMovement = horizontalInput * moveSpeed;
         playerRigidBody.velocity = new Vector2(horizontalMovement, playerRigidBody.velocity.y);
+        RestrictMovement();
     }
 
     private void Flip(float movement)
@@ -86,5 +87,24 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-//*/
+    //*/
+
+    void RestrictMovement()
+    {
+        //3 different spaces
+        //1: World Space - position our objects in the scene; origin is at Vector3 0,0,0 in the center
+        //2: Screen Space - based on your screen size
+        //3: Viewport Space - a normalized value of your screen space
+
+        //Get the two corners from our viewport and convert it into world point
+        Vector3 upperRightCorner = Camera.main.ViewportToWorldPoint(Vector3.one),
+                lowerLeftCorner = Camera.main.ViewportToWorldPoint(Vector3.zero);
+
+        //set the limit of our xPosition and yPosition
+        float restrictedX = Mathf.Clamp(playerController.transform.position.x, lowerLeftCorner.x+0.6f, upperRightCorner.x),
+              restrictedY = Mathf.Clamp(playerController.transform.position.y, lowerLeftCorner.y, upperRightCorner.y);
+
+        //assign the position based on the restricted values
+        playerController.transform.position = new Vector3(restrictedX, playerController.transform.position.y, 0);
+    }
 }
