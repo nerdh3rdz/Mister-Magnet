@@ -7,32 +7,35 @@ public class Enemy : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField]
-    public float enemySpeed = 0.5f;
+    public float enemySpeed;
 
-    private Vector3 originalPosition;
+    protected Vector3 originalPosition;
 
-    private Animator animator;
+    protected Animator animator;
+    protected bool facingLeft = true;
 
-    private bool facingLeft = true;
-
-
-    void Start()
+    protected virtual void Start()
     {
         originalPosition = transform.position;
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    protected void Update()
     {
         Flip(enemySpeed);
+        animator.SetFloat("speed", Mathf.Abs(enemySpeed));
+        Move();
+
+    }
+
+    protected virtual void Move()
+    {
         if (Math.Abs(originalPosition.x - transform.position.x) >= 2.0f)
             enemySpeed = -enemySpeed;
-        animator.SetFloat("speed", Mathf.Abs(enemySpeed));
-
         transform.position += Vector3.right * enemySpeed * Time.deltaTime;
     }
 
-    private void Flip(float movement)
+    protected void Flip(float movement)
     {
         //if we have positive input and not facing right (facing left)
         // OR
@@ -44,6 +47,15 @@ public class Enemy : MonoBehaviour
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            enemySpeed = -enemySpeed;
+            originalPosition.x += originalPosition.x - transform.position.x;
         }
     }
 }

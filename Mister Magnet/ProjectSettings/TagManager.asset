@@ -3,18 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Enemies
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - BG
   - Water
   - UI
+  - Player
   - Ground
   - Enemies
-  - 
-  - 
+  - Obstacles
   - 
   - 
   - 
@@ -40,4 +43,31 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2453463481
+    locked: 0
+  - name: Ground
+    uniqueID: 957307305
+    locked: 0
+  - name: Power-Ups
+    uniqueID: 3530002801
+    locked: 0
+  - name: Enemies
+    uniqueID: 805427735
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3539482425
+    locked: 0
+  - name: Filter
+    uniqueID: 2795866423
+    locked: 0
+  - name: Battery Charges
+    uniqueID: 1228441409
+    locked: 0
+  - name: Player
+    uniqueID: 2181157509
+    locked: 0
+  - name: UI
+    uniqueID: 3884612059
     locked: 0
