@@ -51,4 +51,5 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(float value) => currentHealth -= value;
 
     public float GetHealth() { return currentHealth / maxHealth; }
+    public float GetCurrentHealth() { return currentHealth; }
 }

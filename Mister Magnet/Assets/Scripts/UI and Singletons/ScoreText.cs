@@ -8,5 +8,5 @@ public class ScoreText : MonoBehaviour
 {
     private Text text;
     private void Awake() => text = GetComponent<Text>();
-    void Update() => text.text = "SCORE: " + ScoreManager.Instance.GetScore().ToString();
+    void Update() => text.text = ScoreManager.Instance.GetScore().ToString();
 }

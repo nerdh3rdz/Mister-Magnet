@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
-{    
+{
     [SerializeField]
-    private float bulletSpeed = 2.5f;
+    private float bulletSpeed = 5.0f;
     [SerializeField]
-    private float lifeTime = 2.0f;
+    private float lifeTime = 1.0f;
 
     public bool facingRight = true;
    // public float Damage { get; set; }
@@ -29,8 +29,9 @@ public class Bullet : MonoBehaviour
         //Assign the attached Rigidbody2D component of our gameobject to the _rigidbody variable
         _rigidbody = GetComponent<Rigidbody2D>();
         //This is for the bullet's direction which will depend on where the turret is pointing at.
-        _rigidbody.velocity = new Vector2(facingRight == true ? bulletSpeed : -bulletSpeed, 0);
+        _rigidbody.velocity = new Vector2(facingRight ? bulletSpeed : -bulletSpeed, 0);
 
         Destroy(this.gameObject, lifeTime);
     }
+    public float BulletSpeed => facingRight ? bulletSpeed : -bulletSpeed;
 }

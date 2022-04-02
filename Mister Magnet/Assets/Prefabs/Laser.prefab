@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 391453158671344650}
   - component: {fileID: 391453158671344653}
   - component: {fileID: 391453158671344651}
+  - component: {fileID: 663669199}
+  - component: {fileID: 663669198}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -25,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391453158671344652}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 94.125, y: -2.55, z: 0}
   m_LocalScale: {x: 0.63841784, y: 0.63535345, z: 0.63841784}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &391453158671344653
 SpriteRenderer:
@@ -72,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -755484871
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b916780c12b32fd4790d0fc2cc8907e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,4 +100,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaserBeamPrefab: {fileID: 6620169301110147974, guid: d623c413b4970a241a1e814d550f8e9f, type: 3}
-  LaserInterval: 5
+  LaserInterval: 2
+--- !u!58 &663669199
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391453158671344652}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -5}
+  serializedVersion: 2
+  m_Radius: 0.666
+--- !u!58 &663669198
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391453158671344652}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 5}
+  serializedVersion: 2
+  m_Radius: 0.666

@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Enemies
   - Bullet
+  - Laser
+  - Demagnetizing Field
+  - EMP
   layers:
   - Default
   - TransparentFX
@@ -47,6 +50,9 @@ TagManager:
   - name: BG
     uniqueID: 2453463481
     locked: 0
+  - name: Filter
+    uniqueID: 2795866423
+    locked: 0
   - name: Ground
     uniqueID: 957307305
     locked: 0
@@ -59,15 +65,18 @@ TagManager:
   - name: Obstacles
     uniqueID: 3539482425
     locked: 0
-  - name: Filter
-    uniqueID: 2795866423
-    locked: 0
   - name: Battery Charges
     uniqueID: 1228441409
     locked: 0
   - name: Player
     uniqueID: 2181157509
     locked: 0
+  - name: Effects
+    uniqueID: 1323418115
+    locked: 0
   - name: UI
     uniqueID: 3884612059
+    locked: 0
+  - name: Secret
+    uniqueID: 1632195193
     locked: 0
