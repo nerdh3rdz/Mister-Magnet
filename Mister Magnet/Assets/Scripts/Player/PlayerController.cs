@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         //move the player based on the physics update
         float horizontalMovement = horizontalInput * moveSpeed;
         playerRigidBody.velocity = new Vector2(horizontalMovement, playerRigidBody.velocity.y);
-        //RestrictMovement();
+        RestrictMovement();
     }
 
     public void Flip(float movement)
