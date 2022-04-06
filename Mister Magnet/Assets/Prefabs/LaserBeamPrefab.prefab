@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6620169301110147970}
   - component: {fileID: 6620169301110147971}
   - component: {fileID: 6620169301110147968}
+  - component: {fileID: 3665496417304470965}
   - component: {fileID: 6620169301110147969}
   - component: {fileID: 2353907774889639563}
   m_Layer: 0
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6620169301110147971
 SpriteRenderer:
@@ -107,6 +108,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &3665496417304470965
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620169301110147974}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 2.2, z: 0, w: 2.2}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.67, y: 10.88}
+    newSize: {x: 2.67, y: 10.88}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 10}
+  m_EdgeRadius: 0
 --- !u!70 &6620169301110147969
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

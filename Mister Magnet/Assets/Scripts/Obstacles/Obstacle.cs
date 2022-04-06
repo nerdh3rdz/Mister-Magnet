@@ -6,11 +6,13 @@ public class Obstacle : MonoBehaviour
 {
     protected Animator animator;
 
-    protected bool IsOff = false;
+    public bool IsOff = false;
 
     protected virtual void Start() => animator = GetComponent<Animator>();
 
     protected virtual void Update() => animator.SetBool("IsOff", IsOff);
 
     public void Deactivate() => IsOff = true;
+
+    public void Activate() => IsOff = false;
 }

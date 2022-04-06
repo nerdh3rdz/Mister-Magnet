@@ -23,13 +23,25 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput, verticalInput;
 
     private bool facingRight = true;
-    private bool upRight = true;
+    private bool upRight;
 
     void Start()
     {
         //We used the rigidbody of the parent so that the character will flip around the parent's pivot
         //and not its own which is set to the bottom of the sprite.
         playerRigidBody = playerController.GetComponent<Rigidbody2D>();
+
+        if (PlayerManager.Instance.GravityScale == 0)
+            PlayerManager.Instance.GravityScale = playerRigidBody.gravityScale;
+        else
+            playerRigidBody.gravityScale = PlayerManager.Instance.GravityScale;
+        if (PlayerManager.Instance.Scale.y == 0)
+            PlayerManager.Instance.Scale = playerController.transform.localScale;
+        else
+            playerController.transform.localScale = PlayerManager.Instance.Scale;
+
+        upRight = playerRigidBody.gravityScale > 0;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
@@ -49,7 +61,7 @@ public class PlayerController : MonoBehaviour
         //move the player based on the physics update
         float horizontalMovement = horizontalInput * moveSpeed;
         playerRigidBody.velocity = new Vector2(horizontalMovement, playerRigidBody.velocity.y);
-        RestrictMovement();
+        //RestrictMovement();
     }
 
     public void Flip(float movement)
@@ -68,11 +80,12 @@ public class PlayerController : MonoBehaviour
     {
         if (movement > 0 && upRight || movement < 0 && !upRight)
         {
-            playerRigidBody.gravityScale = -playerRigidBody.gravityScale;
+            playerRigidBody.gravityScale *= -1;
             Vector3 theScale = playerController.transform.localScale;
             theScale.y *= -1;
             playerController.transform.localScale = theScale;
             upRight = !upRight;
+            PlayerManager.Instance.ShiftGravity();
         }
     }
 

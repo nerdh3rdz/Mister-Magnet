@@ -16,7 +16,7 @@ public class DemagnitizingField : Obstacle
     {
         base.Update();
 
-        if (IsOff && this.transform.childCount >= 1)
+        if (IsOff && transform.childCount >= 1)
             Destroy(transform.GetChild(0).gameObject);
 
         dmf.enabled = !IsOff;   //Disable collider when dmf is deactivated

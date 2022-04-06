@@ -12,7 +12,7 @@ public class EMP : Obstacle
     protected override void Start()
     {
         base.Start();
-        glow = this.transform.GetChild(0).GetComponent<Animator>();
+        glow = transform.GetChild(0).GetComponent<Animator>();
         emp = GetComponent<CircleCollider2D>();
     }
 
@@ -23,8 +23,8 @@ public class EMP : Obstacle
         if(!IsOff)
             glow.SetBool("IsExplode", IsExplode);
 
-        if(IsOff && this.transform.childCount >= 1)   //stop the glow animation if emp is deactivated
-            Destroy(this.transform.GetChild(0).gameObject);
+        if(IsOff && transform.childCount >= 1)   //stop the glow animation if emp is deactivated
+            Destroy(transform.GetChild(0).gameObject);
 
         emp.enabled = !IsOff;   //Disable collider when emp is deactivated
     }
@@ -33,7 +33,7 @@ public class EMP : Obstacle
     {
         if (!IsOff && collision.gameObject.tag == "Player")
         {
-            this.transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(1).gameObject.SetActive(true);
             StartCoroutine(IsExploding());  //Play exploding animation once
         }
     }
@@ -41,6 +41,6 @@ public class EMP : Obstacle
     private IEnumerator IsExploding()
     {
         yield return new WaitForSeconds(0.45f);
-        this.transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 }

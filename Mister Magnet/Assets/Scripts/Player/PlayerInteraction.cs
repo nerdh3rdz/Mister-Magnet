@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Player")]
     public GameObject player;
     private PlayerController Magnathan;
+        
     [Header("Player Boots")]
     [SerializeField]
     private Transform playerBoots;
@@ -16,43 +17,57 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private LayerMask enemyLayers;
 
+    public GameObject forceField, magneticField, deathAnimation, gameOverScreen;
+    private PowerField barrier, misterMagnetMagnet;
+
+    private bool immune = false;
+
     void Start() => Magnathan = player.GetComponent<PlayerController>();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         float force = 0;
 
-        //METHOD 2 checking for collision with enemies/obstacles: Check the tag of the gameobject
-        if (collision.gameObject.tag == "Enemies")
+        if (!immune)
         {
-            if (StompEnemy())   //This will check if it was the player's boots that collided with the enemy.
+            //METHOD 2 checking for collision with enemies/obstacles: Check the tag of the gameobject
+            if (collision.gameObject.tag == "Enemies")
+            {
+                if (StompEnemy())   //This will check if it was the player's boots that collided with the enemy.
+                {
+                    Destroy(collision.gameObject);
+                    ScoreManager.Instance.AddScore(5);
+                }
+                else
+                {
+                    HealthManager.Instance.TakeDamage(2.5f);
+                    force = collision.gameObject.GetComponent<Enemy>().enemySpeed;
+
+                }
+            }
+            else if (collision.gameObject.tag == "Bullet")
             {
                 Destroy(collision.gameObject);
-                ScoreManager.Instance.AddScore(5);
+                HealthManager.Instance.TakeDamage(5.0f);
+                force = collision.gameObject.GetComponent<Bullet>().BulletSpeed;
             }
-            else
+            else if (collision.gameObject.tag == "Laser")
             {
-                HealthManager.Instance.TakeDamage(2.5f);
-                force = collision.gameObject.GetComponent<Enemy>().enemySpeed;
+                HealthManager.Instance.TakeDamage(7.0f);
+                force = 1.0f;
             }
+
+            KnockBack(force / 10);
         }
-        else if (collision.gameObject.tag == "Bullet")
-        {
+        else if (collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Door")
             Destroy(collision.gameObject);
-            HealthManager.Instance.TakeDamage(5.0f);
-            force = collision.gameObject.GetComponent<Bullet>().BulletSpeed;
-        }
-        else if (collision.gameObject.tag == "Laser")
-        {
-            HealthManager.Instance.TakeDamage(7.0f);
-            force = 1.0f;
-        }
 
         if (HealthManager.Instance.GetHealth() <= 0.0f)
-            Destroy(this.gameObject);
-
-        if (collision.gameObject.tag != "Ground")
-            KnockBack(force/10);
+        {
+            Instantiate(deathAnimation, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
+            gameOverScreen.SetActive(true);
+        }
     }
 
     private void KnockBack(float force) //This will push the player back with a force depending on the object it collided with.
@@ -87,9 +102,9 @@ public class PlayerInteraction : MonoBehaviour
     private float slowAmount = 1.5f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Demagnetizing Field")
+        if (collision.gameObject.tag == "Demagnetizing Field" && !immune)
             Magnathan.moveSpeed -= slowAmount;
-        else if (collision.gameObject.tag == "EMP")
+        else if (collision.gameObject.tag == "EMP" && !immune)
         {
             Magnathan.moveSpeed -= slowAmount;
             HealthManager.Instance.TakeDamage(HealthManager.Instance.GetCurrentHealth()/5);
@@ -99,18 +114,42 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Demagnetizing Field")
+        if (collision.gameObject.tag == "Demagnetizing Field" && !immune)
             HealthManager.Instance.TakeDamage(0.0125f);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Demagnetizing Field")
             Magnathan.moveSpeed += slowAmount;
+        else if (collision.gameObject.tag == "Bottomless Pit")
+        {
+            gameObject.SetActive(false);
+            gameOverScreen.SetActive(true);
+        }
     }
 
     private IEnumerator EMPEffect()
     {
         yield return new WaitForSeconds(2.0f);
         Magnathan.moveSpeed += slowAmount;
+    }
+
+    public IEnumerator StartImmunity()
+    {
+        immune = true;    Magnathan.moveSpeed = 10.0f;
+
+        barrier = Instantiate(forceField, transform.position, Quaternion.identity).GetComponent<PowerField>();
+        barrier.PlayerCore = transform;
+        barrier.PlayerPosition = player.transform;
+
+        yield return new WaitForSeconds(20.0f);
+        immune = false;   Magnathan.moveSpeed = 5.0f;
+    }
+
+    public void StartMagneticism()
+    {
+        misterMagnetMagnet = Instantiate(magneticField, transform.position, Quaternion.identity).GetComponent<PowerField>();
+        misterMagnetMagnet.PlayerPosition = transform;
+        misterMagnetMagnet.PlayerCore = transform;
     }
 }

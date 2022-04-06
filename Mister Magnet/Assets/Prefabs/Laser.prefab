@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 391453158671344651}
   - component: {fileID: 663669199}
   - component: {fileID: 663669198}
+  - component: {fileID: 7145061935736188202}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -133,3 +134,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 5}
   serializedVersion: 2
   m_Radius: 0.666
+--- !u!95 &7145061935736188202
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391453158671344652}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aff424b2c7b180249b1d7e03584647c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

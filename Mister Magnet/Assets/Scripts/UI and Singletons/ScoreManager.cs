@@ -50,4 +50,6 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int value) => score += value;
 
     public int GetScore() { return score; }
+
+    public void Reset() => score = 0;
 }

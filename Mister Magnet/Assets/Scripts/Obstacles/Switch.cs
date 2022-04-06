@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Switch : Obstacle
 {
-    public GameObject objectToDeactivate;
-    private Obstacle obstacle;
+    public GameObject objectToDeactivate, objectToActivate;
+    private Obstacle obstacle1, obstacle2;
 
     protected override void Start()
     {
         base.Start();
-        obstacle = objectToDeactivate.GetComponent<Obstacle>();
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
+        if (objectToDeactivate != null)
+            obstacle1 = objectToDeactivate.GetComponent<Obstacle>();
+        if (objectToActivate != null)
+            obstacle2 = objectToActivate.GetComponent<Obstacle>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -22,7 +21,11 @@ public class Switch : Obstacle
         if (collision.gameObject.tag == "Player")
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                obstacle.Deactivate();
+                if (objectToDeactivate != null)
+                    obstacle1.Deactivate();
+                if(objectToActivate!=null)
+                    obstacle2.Activate();
+
                 this.Deactivate();
             }
     }

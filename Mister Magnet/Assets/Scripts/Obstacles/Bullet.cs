@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         //This is for the bullet's direction which will depend on where the turret is pointing at.
         _rigidbody.velocity = new Vector2(facingRight ? bulletSpeed : -bulletSpeed, 0);
 
-        Destroy(this.gameObject, lifeTime);
+        Destroy(gameObject, lifeTime);
     }
     public float BulletSpeed => facingRight ? bulletSpeed : -bulletSpeed;
 }

@@ -6,17 +6,13 @@ public class LaserBeam : MonoBehaviour
 {
     [SerializeField]
     private float lifeTime = 1.05f;
+    public float zrotation = 0.0f;
+    public Vector3 laserScale;
 
-    // public float Damage { get; set; }
-    // The above property is a shortcut for this:
-    /*
-       private float _damage;
-
-       public float Damage
-       {
-           get { return _damage; }
-           set { _damage = value; }
-       }*/
-
-    void Start() => Destroy(this.gameObject, lifeTime);
+    void Start()
+    {
+        transform.localScale = laserScale;
+        transform.Rotate(0, 0, zrotation);
+        Destroy(this.gameObject, lifeTime);
+    }
 }

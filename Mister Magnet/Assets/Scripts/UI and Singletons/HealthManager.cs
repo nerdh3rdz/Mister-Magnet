@@ -41,7 +41,7 @@ public class HealthManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         //if there is copy, destroy
         else
@@ -50,6 +50,16 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(float value) => currentHealth -= value;
 
+    public void RestoreHealth()
+    {
+        currentHealth += currentHealth / 2;
+
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+    }
+
     public float GetHealth() { return currentHealth / maxHealth; }
     public float GetCurrentHealth() { return currentHealth; }
+
+    public void Reset() => currentHealth = maxHealth;
 }

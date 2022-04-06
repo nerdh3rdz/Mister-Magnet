@@ -10,6 +10,8 @@ TagManager:
   - Laser
   - Demagnetizing Field
   - EMP
+  - Magnetic Field
+  - Bottomless Pit
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - Ground
   - Enemies
   - Obstacles
-  - 
-  - 
+  - Power-Ups
+  - Screen
   - 
   - 
   - 
@@ -56,6 +58,9 @@ TagManager:
   - name: Ground
     uniqueID: 957307305
     locked: 0
+  - name: Film
+    uniqueID: 3310127135
+    locked: 0
   - name: Power-Ups
     uniqueID: 3530002801
     locked: 0
@@ -74,9 +79,12 @@ TagManager:
   - name: Effects
     uniqueID: 1323418115
     locked: 0
+  - name: Secret
+    uniqueID: 1632195193
+    locked: 0
   - name: UI
     uniqueID: 3884612059
     locked: 0
-  - name: Secret
-    uniqueID: 1632195193
+  - name: Screen
+    uniqueID: 419027173
     locked: 0

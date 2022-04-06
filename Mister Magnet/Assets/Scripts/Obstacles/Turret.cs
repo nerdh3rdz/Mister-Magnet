@@ -8,6 +8,8 @@ public class Turret : Obstacle
     private Bullet turretBullet;
     private float previousshot = 0.0f;
     public float enemyFireRate = 1.0f;
+    [SerializeField]
+    private bool facingRight;    //Couldn't get EulerAngles to work here zz
 
     protected override void Update()
     {
@@ -16,7 +18,7 @@ public class Turret : Obstacle
         {
             turretBullet = Instantiate(turretBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
             //This is to change the direction of the bullet depending on which side the turret is facing. 
-            turretBullet.facingRight = (transform.rotation.y == 1);
+            turretBullet.facingRight = facingRight;
             previousshot += enemyFireRate;
         }
     }
