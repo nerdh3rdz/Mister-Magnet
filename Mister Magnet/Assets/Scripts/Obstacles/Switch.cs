@@ -6,7 +6,7 @@ public class Switch : Obstacle
 {
     public GameObject objectToDeactivate, objectToActivate;
     private Obstacle obstacle1, obstacle2;
-
+    private bool TouchButton = false;
     protected override void Start()
     {
         base.Start();
@@ -15,18 +15,29 @@ public class Switch : Obstacle
         if (objectToActivate != null)
             obstacle2 = objectToActivate.GetComponent<Obstacle>();
     }
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.Space) && TouchButton)
+        {
+            if (objectToDeactivate != null)
+                obstacle1.Deactivate();
+            if (objectToActivate != null)
+                obstacle2.Activate();
 
-    private void OnTriggerStay2D(Collider2D collision)
+            this.Deactivate();
+        }
+    }
+
+    //Detect when the player is near the button or not.
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (objectToDeactivate != null)
-                    obstacle1.Deactivate();
-                if(objectToActivate!=null)
-                    obstacle2.Activate();
-
-                this.Deactivate();
-            }
+            TouchButton = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            TouchButton = false;
     }
 }
