@@ -38,7 +38,7 @@ public class CameraTrigger : MonoBehaviour
     {
         PreviewCamera.Priority = CameraPrio + 10;
         yield return new WaitForSeconds(3.0f);
-        PreviewCamera.Priority = CameraPrio - 1;
+        PreviewCamera.Priority = CameraPrio - 10;
         LookAheadCamera.SetActive(false);
     }
 
