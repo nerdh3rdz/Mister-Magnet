@@ -13,6 +13,7 @@ public class PowerField : MonoBehaviour
 
     void Update()
     {
+        //Follow the player's position and scale
         transform.position = PlayerPosition.transform.position;
         transform.localScale = new Vector3(transform.localScale.x, PlayerCore.localScale.y / Math.Abs(PlayerCore.localScale.y), transform.localScale.z);
     }

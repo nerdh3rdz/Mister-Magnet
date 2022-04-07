@@ -32,7 +32,7 @@ public class Collectible : MonoBehaviour
             StartCoroutine(MovementCooldown());
             isMovementCooldown = true;
         }
-        if(!goToPlayer)
+        if(!goToPlayer) //collectible will move up and down unless the player has a magnet power-up and is near the collectible.
             transform.localPosition += Vector3.up * collectibleSpeed * Time.deltaTime;
         else
         {

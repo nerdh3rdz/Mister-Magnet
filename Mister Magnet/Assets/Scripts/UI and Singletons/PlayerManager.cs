@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShiftGravity()
+    public void ShiftGravity()  //Remember the player's gravity scale and scale
     {
         GravityScale *= -1;
         Scale = new Vector3(Scale.x, -Scale.y, Scale.z);

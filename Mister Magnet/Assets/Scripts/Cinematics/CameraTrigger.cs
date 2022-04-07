@@ -12,7 +12,7 @@ public class CameraTrigger : MonoBehaviour
     void Start()
     {
         Camera = GetComponent<CinemachineVirtualCamera>();
-        if (LookAheadCamera != null)
+        if (LookAheadCamera != null)    //if we want to give the player a preview of what's ahead
             PreviewCamera = LookAheadCamera.GetComponent<CinemachineVirtualCamera>();
     }
 

@@ -17,7 +17,7 @@ public class DemagnitizingField : Obstacle
         base.Update();
 
         if (IsOff && transform.childCount >= 1)
-            Destroy(transform.GetChild(0).gameObject);
+            Destroy(transform.GetChild(0).gameObject);  //Destroy the shock animations
 
         dmf.enabled = !IsOff;   //Disable collider when dmf is deactivated
     }

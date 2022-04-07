@@ -12,7 +12,7 @@ public class LaserBeam : MonoBehaviour
     void Start()
     {
         transform.localScale = laserScale;
-        transform.Rotate(0, 0, zrotation);
+        transform.Rotate(0, 0, zrotation);  //rotate the beam based on the base's rotation.
         Destroy(this.gameObject, lifeTime);
     }
 }

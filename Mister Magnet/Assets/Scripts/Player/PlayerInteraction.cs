@@ -134,6 +134,7 @@ public class PlayerInteraction : MonoBehaviour
         Magnathan.moveSpeed += slowAmount;
     }
 
+    //Power-Ups on the Player.
     public IEnumerator StartImmunity()
     {
         immune = true;    Magnathan.moveSpeed = 10.0f;
